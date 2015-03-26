@@ -1,0 +1,14 @@
+<h1><%= @ship.name %></h1>
+<ul>
+<% @ship.equips.each do |equip| %>
+<li><%= equip.name %> : <%= equip.score %></li>
+<% end %>
+<li>
+<%= form_for [@ship,@ship.equips.build] do |f| %>
+<%= f.text_field :name %>
+<%= f.text_field :score %>
+<%= f.submit %>
+<% end %>
+</li>
+
+</ul>

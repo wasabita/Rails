@@ -1,0 +1,2 @@
+class EquipsController < ApplicationController
+end

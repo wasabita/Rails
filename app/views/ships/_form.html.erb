@@ -1,0 +1,12 @@
+<%= form_for @ship do |f| %>
+<p>
+	<%= f.label :name %><br>
+	<%= f.text_field :name %>
+	<%if @ship.errors.any? %>
+		<%= @ship.errors.messages[:name][0] %>
+	<% end %>
+</p>
+<p>
+	<%= f.submit %>
+</p>
+<% end %>

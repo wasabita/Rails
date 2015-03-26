@@ -1,0 +1,11 @@
+<h1>Ships</h1>
+<ul>
+	<% @ships.each do |ship| %>
+	<li><%= link_to ship.name,ship_path(ship.id) %>
+	<%= link_to "Edit",edit_ship_path(ship.id) %>
+	<%= link_to "Delete",ship_path(ship.id),method: :delete,data:{
+		confirm:"よろしいですか？"} %></li>
+	<% end %>
+</ul>
+
+<p> <%= link_to "create new",new_ship_path(:id) %> </p>
