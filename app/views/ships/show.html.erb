@@ -1,7 +1,12 @@
 <h1><%= @ship.name %></h1>
+<p>素の索敵値：<%= @ship.score %></p>
 <ul>
+<% sum=0 %>
 <% @ship.equips.each do |equip| %>
-<li><%= equip.name %> : <%= equip.score %></li>
+<li><%= equip.name %>	： <%= equip.score %>	
+<%= link_to "Delete",ship_equip_path(equip.ship_id,equip.id),method: :delete,data:{confirm:"よろしいですか？"} %>
+</li>
+<% sum+=equip.score %>
 <% end %>
 <li>
 <%= form_for [@ship,@ship.equips.build] do |f| %>
@@ -10,5 +15,6 @@
 <%= f.submit %>
 <% end %>
 </li>
+合計		： <%= sum %>
 
 </ul>
