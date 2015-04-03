@@ -6,7 +6,7 @@ class ShipsController < ApplicationController
 	end
 
 	def show
-		@str="test!"
+		@str=EqDatum.all
 	end
 
 	def new

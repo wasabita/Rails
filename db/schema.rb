@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326084412) do
+ActiveRecord::Schema.define(version: 20150403064025) do
+
+  create_table "eq_data", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "score"
+    t.float    "rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "equips", force: :cascade do |t|
     t.string   "name"

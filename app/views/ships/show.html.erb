@@ -17,5 +17,10 @@
 </li>
 合計		： <%= sum %>
 <%= select :page, :name, [["Railsの基礎", "rails_base"], ["Rubyの基礎", "ruby_base"]] %>
-<%= @str %>
-</ul>
+
+<%= form_for [@ship,@ship.equips.build] do |f|%>
+
+<%= f.collection_select :name, EqDatum.all, :id, :view_name_and_scores %>
+	<%= f.submit %>
+<% end %>
+<%=EqDatum.find(1).id%>
