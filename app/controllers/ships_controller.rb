@@ -6,6 +6,7 @@ class ShipsController < ApplicationController
 	end
 
 	def show
+		@str="test!"
 	end
 
 	def new
