@@ -1,7 +1,8 @@
 class EquipsController < ApplicationController
 	def create
 		@ship=Ship.find(params[:ship_id])
-		@equip=@ship.equips.new(equip_params)
+		@eq_datum=EqDatum.find(equip_params[:eq_datum_id])
+		@equip=@ship.equips.new(name: @eq_datum.name, score: @eq_datum.score, rate: @eq_datum.rate)
 		@equip.save
 		redirect_to ship_path(@ship.id)
 	end
@@ -13,6 +14,6 @@ class EquipsController < ApplicationController
 
 	private
 	def equip_params
-		params.require(:equip).permit(:name , :score)
+		params.require(:equip).permit(:eq_datum_id)
 	end
 end

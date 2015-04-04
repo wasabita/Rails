@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150403064025) do
+ActiveRecord::Schema.define(version: 20150403113911) do
 
   create_table "eq_data", force: :cascade do |t|
     t.string   "name"
@@ -25,8 +25,10 @@ ActiveRecord::Schema.define(version: 20150403064025) do
     t.string   "name"
     t.float    "score"
     t.integer  "ship_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.float    "rate"
+    t.integer  "eq_datum_id"
   end
 
   add_index "equips", ["ship_id"], name: "index_equips_on_ship_id"

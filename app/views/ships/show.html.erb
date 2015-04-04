@@ -20,7 +20,7 @@
 
 <%= form_for [@ship,@ship.equips.build] do |f|%>
 
-<%= f.collection_select :name, EqDatum.all, :id, :view_name_and_scores %>
+<%= f.collection_select :eq_datum_id, EqDatum.all, :id, :view_name_and_scores %>
 	<%= f.submit %>
 <% end %>
 <%=EqDatum.find(1).id%>
