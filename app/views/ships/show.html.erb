@@ -8,19 +8,11 @@
 </li>
 <% sum+=equip.score %>
 <% end %>
-<li>
-<%= form_for [@ship,@ship.equips.build] do |f| %>
-<%= f.text_field :name %>
-<%= f.text_field :score %>
-<%= f.submit %>
-<% end %>
-</li>
+
 合計		： <%= sum %>
-<%= select :page, :name, [["Railsの基礎", "rails_base"], ["Rubyの基礎", "ruby_base"]] %>
 
 <%= form_for [@ship,@ship.equips.build] do |f|%>
 
-<%= f.collection_select :eq_datum_id, EqDatum.all, :id, :view_name_and_scores %>
-	<%= f.submit %>
+<%= f.collection_select :eq_datum_id, EqDatum.all, :id, :view_name_and_scores ,:include_blank=>true %>
+	<%= f.submit value="追加"%>
 <% end %>
-<%=EqDatum.find(1).id%>

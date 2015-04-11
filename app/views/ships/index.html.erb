@@ -1,11 +1,28 @@
 <h1>Ships</h1>
 <ul>
+	<% sum=0.0 %>
 	<% @ships.each do |ship| %>
-	<li><%= link_to ship.name,ship_path(ship.id) %>
-	<%= link_to "Edit",edit_ship_path(ship.id) %>
-	<%= link_to "Delete",ship_path(ship.id),method: :delete,data:{
-		confirm:"よろしいですか？"} %></li>
+		<li><%= link_to ship.name,ship_path(ship.id) %>
+		<% equip_sum=(Math.sqrt(ship.score)*1.69) %>
+		<% ship.equips.each do |equip| %>
+			<% equip_sum+=equip.score*equip.rate %>
+		<% end %>
+		SCORE = <%= equip_sum=equip_sum.round(2) %>
+		<% sum+=equip_sum %>
+		<%= link_to "Edit",edit_ship_path(ship.id) %>
+		<%= link_to "Delete",ship_path(ship.id),method: :delete,data:{
+			confirm:"よろしいですか？"} %></li>
 	<% end %>
 </ul>
-
+<p>合計 ：<%= sum %><br>
+司令Lvにより：<%= 120*(-0.61) %> => <%= sum=(sum+120*(-0.61)).round(1) %><br>
+<% low=57.2 %>
+<% high=70.4 %>
+<% case sum %>
+<% when 0..low then message="不足　@#{(high-sum).round(1)}" %>
+<% when low...high then message="不確実　@#{(high-sum).round(1)}" %>
+<% when high..200 then message="確実　+#{(sum-high).round(1)}" %>
+<% else message="エラー" %>
+<% end %>
+判定：<%= message %>
 <p> <%= link_to "create new",new_ship_path(:id) %> </p>

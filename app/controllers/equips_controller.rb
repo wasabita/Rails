@@ -2,6 +2,9 @@ class EquipsController < ApplicationController
 	def create
 		@ship=Ship.find(params[:ship_id])
 		@eq_datum=EqDatum.find(equip_params[:eq_datum_id])
+puts "**********************************"
+puts equip_params[:eq_datum_id]
+puts "**********************************"
 		@equip=@ship.equips.new(name: @eq_datum.name, score: @eq_datum.score, rate: @eq_datum.rate)
 		@equip.save
 		redirect_to ship_path(@ship.id)
