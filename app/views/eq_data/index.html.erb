@@ -1,0 +1,10 @@
+<h1>data</h1>
+<% @data.each do |datum| %>
+<li>
+<%= link_to "Edit",edit_eq_datum_path(datum.id) %>
+<%= link_to "Delete",eq_datum_path(datum.id),method: :delete,data:{confirm:"よろしいですか？"} %>&emsp;
+<%= datum.name %>&emsp;&emsp;(<%= datum.score %>×<%= datum.rate %>倍)
+</li>
+
+<% end %>
+<%= link_to "create new",new_eq_datum_path %><p>

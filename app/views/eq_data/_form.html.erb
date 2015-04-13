@@ -1,0 +1,16 @@
+<%= form_for @eq_datum do |f| %>
+<p>
+	<%= f.label :name %>
+	<%= f.text_field :name %><br>
+	<%= f.label :score %>
+	<%= f.text_field :score %><br>
+	<%= f.label :rate %>
+	<%= f.text_field :rate %><br>
+	<%if @eq_datum.errors.any? %>
+		<%= @eq_datum.errors.messages[:name][0] %>
+	<% end %>
+</p>
+<p>
+	<%= f.submit %>
+</p>
+<% end %>
