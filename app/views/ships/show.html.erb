@@ -10,9 +10,19 @@
 <% end %>
 
 合計		： <%= sum %>
-
+<br>
+<br>偵察機
 <%= form_for [@ship,@ship.equips.build] do |f|%>
-
-<%= f.collection_select :eq_datum_id, EqDatum.all, :id, :view_name_and_scores ,:include_blank=>true %>
+	<%= f.collection_select :eq_datum_id, @teisatuki, :id, :view_name_and_scores ,:include_blank=>true %>
+	<%= f.submit value="追加"%>
+<% end %>
+電探
+<%= form_for [@ship,@ship.equips.build] do |f|%>
+	<%= f.collection_select :eq_datum_id, @dentan, :id, :view_name_and_scores ,:include_blank=>true %>
+	<%= f.submit value="追加"%>
+<% end %>
+その他
+<%= form_for [@ship,@ship.equips.build] do |f|%>
+	<%= f.collection_select :eq_datum_id, @other, :id, :view_name_and_scores ,:include_blank=>true %>
 	<%= f.submit value="追加"%>
 <% end %>

@@ -6,7 +6,34 @@ class ShipsController < ApplicationController
 	end
 
 	def show
-		@str=EqDatum.all
+		teisatuki_rate=[1.66,2.00,1.78]
+		dentan_rate=[1.00,0.99]
+		@teisatuki=[]
+		@dentan=[]
+		@other=[]
+		EqDatum.all.each do |eq|
+			case eq.rate
+			when *teisatuki_rate then @teisatuki << eq
+			when *dentan_rate then @dentan << eq
+			else @other << eq
+			end
+		end
+puts "**********************************"
+puts EqDatum.all.class
+puts "teisatuki"
+@teisatuki.each do |eq|
+	puts "#{eq.name} : #{eq.rate}"
+end
+puts "dentan"
+@dentan.each do |eq|
+	puts "#{eq.name} : #{eq.rate}"
+end
+puts "other"
+@other.each do |eq|
+	puts "#{eq.name} : #{eq.rate}"
+end
+puts "**********************************"
+
 	end
 
 	def new
