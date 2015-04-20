@@ -1,10 +1,18 @@
-<h1>data</h1>
-<% @data.each do |datum| %>
-<li>
-<%= link_to "Edit",edit_eq_datum_path(datum.id) %>
-<%= link_to "Delete",eq_datum_path(datum.id),method: :delete,data:{confirm:"よろしいですか？"} %>&emsp;
-<%= datum.name %>&emsp;&emsp;(<%= datum.score %>×<%= datum.rate %>倍)
-</li>
-
-<% end %>
+<h1>装備データ一覧</h1>
+<table border=1>
+	<tr>
+		<th>装備名</th>
+		<th>値</th>
+		<th>倍率</th>
+	</tr>
+	<% @data.each do |datum| %>
+		<tr>
+			<td><%= datum.name %></td>
+			<td><%= datum.score %></td>
+			<td><%= datum.rate %></td>
+			<td><%= link_to "Edit",edit_eq_datum_path(datum.id) %></td>
+			<td><%= link_to "Delete",eq_datum_path(datum.id),method: :delete,data:{confirm:"よろしいですか？"} %>&emsp;</td>
+		</tr>
+	<% end %>
+</table>
 <%= link_to "create new",new_eq_datum_path %><p>

@@ -1,28 +1,53 @@
 <h1><%= @ship.name %></h1>
-<p>素の索敵値：<%= @ship.score %></p>
-<ul>
+素の索敵値：<%= @ship.score %><p>
 <% sum=0 %>
-<% @ship.equips.each do |equip| %>
-<li><%= equip.name %>	： <%= equip.score %>	
-<%= link_to "Delete",ship_equip_path(equip.ship_id,equip.id),method: :delete,data:{confirm:"よろしいですか？"} %>
-</li>
-<% sum+=equip.score %>
-<% end %>
-
-合計		： <%= sum %>
-<br>
-<br>偵察機
-<%= form_for [@ship,@ship.equips.build] do |f|%>
-	<%= f.collection_select :eq_datum_id, @teisatuki, :id, :view_name_and_scores ,:include_blank=>true %>
-	<%= f.submit value="追加"%>
-<% end %>
-電探
-<%= form_for [@ship,@ship.equips.build] do |f|%>
-	<%= f.collection_select :eq_datum_id, @dentan, :id, :view_name_and_scores ,:include_blank=>true %>
-	<%= f.submit value="追加"%>
-<% end %>
-その他
-<%= form_for [@ship,@ship.equips.build] do |f|%>
-	<%= f.collection_select :eq_datum_id, @other, :id, :view_name_and_scores ,:include_blank=>true %>
-	<%= f.submit value="追加"%>
-<% end %>
+<table>
+	<tr>
+		<th>装備名</th>
+		<th>評価値</th>
+	</tr>
+	<tr>
+		<% sum=Math.sqrt(@ship.score)*1.69 %>
+		<td>素の索敵値</td>
+		<td><%= sum.round(2) %></td>
+	</tr>
+	<% @ship.equips.each do |equip| %>
+		<tr>
+			<% value=equip.score*equip.rate %>
+			<% sum+=value %>
+			<td><%= equip.name %></td>
+			<td><%= value.round(2) %></td>
+			<td>
+			<%= link_to "Delete",ship_equip_path(equip.ship_id,equip.id),method: :delete,data:{confirm:"よろしいですか？"} %>
+			</td>
+		</tr>
+	<% end %>
+	<tr>
+		<td>合計</td>
+		<td><%= sum.round(2) %></td>
+	</tr>
+</table>
+<p>
+<table>
+	<tr>
+		<td>偵察機</td>
+		<%= form_for [@ship,@ship.equips.build] do |f|%>
+		<td><%= f.collection_select :eq_datum_id, @teisatuki, :id, :view_name_and_scores ,:include_blank=>true %></td>
+		<td><%= f.submit value="追加"%></td>
+		<% end %>
+	</tr>
+	<tr>
+		<td>電探</td>
+		<%= form_for [@ship,@ship.equips.build] do |f|%>
+		<td><%= f.collection_select :eq_datum_id, @dentan, :id, :view_name_and_scores ,:include_blank=>true %></td>
+		<td><%= f.submit value="追加"%></td>
+		<% end %>
+	</tr>
+	<tr>
+		<td>その他</td>
+		<%= form_for [@ship,@ship.equips.build] do |f|%>
+		<td><%= f.collection_select :eq_datum_id, @other, :id, :view_name_and_scores ,:include_blank=>true %></td>
+		<td><%= f.submit value="追加"%></td>
+		<% end %>
+	</tr>
+</table>

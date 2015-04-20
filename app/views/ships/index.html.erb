@@ -1,19 +1,26 @@
 <h1>Ships</h1>
-<ul>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Score</th>
+	</tr>
 	<% sum=0.0 %>
 	<% @ships.each do |ship| %>
-		<li><%= link_to ship.name,ship_path(ship.id) %>
+		<tr>
 		<% equip_sum=(Math.sqrt(ship.score)*1.69) %>
 		<% ship.equips.each do |equip| %>
 			<% equip_sum+=equip.score*equip.rate %>
 		<% end %>
-		SCORE = <%= equip_sum=equip_sum.round(2) %>
+		<% equip_sum=equip_sum.round(2) %>
 		<% sum+=equip_sum %>
-		<%= link_to "Edit",edit_ship_path(ship.id) %>
-		<%= link_to "Delete",ship_path(ship.id),method: :delete,data:{
-			confirm:"よろしいですか？"} %></li>
+		<td><%= link_to ship.name,ship_path(ship.id) %></td>
+		<td><%= equip_sum %></td>
+		<td><%= link_to "Edit",edit_ship_path(ship.id) %></td>
+		<td><%= link_to "Delete",ship_path(ship.id),method: :delete,data:{
+			confirm:"よろしいですか？"} %></td>
+		</tr>
 	<% end %>
-</ul>
+</table>
 <p>合計 ：<%= sum %><br>
 司令Lvにより：<%= 120*(-0.61) %> => <%= sum=(sum+120*(-0.61)).round(1) %><br>
 <% low=57.2 %>
