@@ -18,22 +18,6 @@ class ShipsController < ApplicationController
 			else @other << eq
 			end
 		end
-		puts "**********************************"
-		puts EqDatum.all.class
-		puts "teisatuki"
-		@teisatuki.each do |eq|
-			puts "#{eq.name} : #{eq.rate}"
-		end
-		puts "dentan"
-		@dentan.each do |eq|
-			puts "#{eq.name} : #{eq.rate}"
-		end
-		puts "other"
-		@other.each do |eq|
-			puts "#{eq.name} : #{eq.rate}"
-		end
-		puts "**********************************"
-
 	end
 
 	def new
