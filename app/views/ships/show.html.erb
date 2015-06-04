@@ -27,27 +27,22 @@
 		<td><%= sum.round(2) %></td>
 	</tr>
 </table>
-<p>
-<table>
-	<tr>
-		<td>偵察機</td>
-		<%= form_for [@ship,@ship.equips.build] do |f|%>
-		<td><%= f.collection_select :eq_datum_id, @teisatuki, :id, :view_name_and_scores %></td>
-		<td><%= f.submit value="追加"%></td>
-		<% end %>
-	</tr>
-	<tr>
-		<td>電探</td>
-		<%= form_for [@ship,@ship.equips.build] do |f|%>
-		<td><%= f.collection_select :eq_datum_id, @dentan, :id, :view_name_and_scores %></td>
-		<td><%= f.submit value="追加"%></td>
-		<% end %>
-	</tr>
-	<tr>
-		<td>その他</td>
-		<%= form_for [@ship,@ship.equips.build] do |f|%>
-		<td><%= f.collection_select :eq_datum_id, @other, :id, :view_name_and_scores %></td>
-		<td><%= f.submit value="追加"%></td>
-		<% end %>
-	</tr>
-</table>
+<br>
+
+		
+	偵察機
+<%= form_for [@ship,@ship.equips.build] do |f|%>
+	<%= f.collection_select :eq_datum_id, @teisatuki, :id, :view_name_and_scores %>
+	<%= f.submit value="追加"%>
+<% end %>
+	電探
+<%= form_for [@ship,@ship.equips.build] do |f|%>
+	<%= f.collection_select :eq_datum_id, @dentan, :id, :view_name_and_scores %>
+	<%= f.submit value="追加"%>
+<% end %>
+	その他
+<%= form_for [@ship,@ship.equips.build] do |f|%>
+	<%= f.collection_select :eq_datum_id, @other, :id, :view_name_and_scores %>
+	<%= f.submit value="追加"%>
+<% end %>
+

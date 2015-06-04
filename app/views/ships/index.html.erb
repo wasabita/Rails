@@ -18,6 +18,11 @@
 		<td><%= link_to "Edit",edit_ship_path(ship.id) %></td>
 		<td><%= link_to "Delete",ship_path(ship.id),method: :delete,data:{
 			confirm:"よろしいですか？"} %></td>
+		<td>
+			<% ship.equips.each do |equip| %>
+				<%= equip.name %>　
+			<% end %>
+		</td>
 		</tr>
 	<% end %>
 </table>
